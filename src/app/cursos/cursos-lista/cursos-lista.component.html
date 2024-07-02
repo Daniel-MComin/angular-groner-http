@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="card-header">
+  <h4 class="float-start">Cursos</h4>
+  <a class="btn btn-primary float-end ms-1" [routerLink]="['novo']">Novo Curso</a>
+  <a class="btn btn-secondary float-end" (click)="onRefresh()">Atualizar</a>
+</div>
+  <div class="card-body">
+    <table class="table table-striped" *ngIf="cursos$ | async as cursos ; else loading">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Curso</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let curso of cursos">
+          <th scope="row"> {{ curso.id }}</th>
+          <td> {{ curso.nome }} </td>
+          <td></td>
+          <td>
+            <span class="float-end">
+              <button class="btn btn-outline-warning" (click)="onEdit(curso.id)">Atualizar</button>
+              <button class="btn btn-outline-danger">Remover</button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #loading>
+      <div class="d-flex justify-content-center">
+      <div class="spinner-border text-primary" role="status">
+      </div>
+    </div>
+    </ng-template>
+  
+  </div>
+</div>
